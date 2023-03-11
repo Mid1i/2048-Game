@@ -10,7 +10,64 @@ setupInputOnce();
 
 // Tracking the pressed key
 function setupInputOnce() {
-    window.addEventListener("keydown", handleInput, {once: true});    
+    window.addEventListener("keydown", handleInput, {once: true});  
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;  
+
+    window.addEventListener('touchstart', function(event) {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+    }, {once: true});
+
+    window.addEventListener('touchend', function(event) {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+        checkDirection(touchStartX, touchEndX, touchStartY, touchEndY);
+    }, {once: true});
+}
+    
+async function checkDirection(touchStartX, touchEndX, touchStartY, touchEndY) {
+    if ((touchEndX < touchStartX) && (Math.abs(touchEndX - touchStartX) > Math.abs(touchEndY - touchStartY))) {
+        if (!canMoveLeft()) {
+            setupInputOnce();
+            return;    
+        }
+        await moveLeft();  
+    }
+    if ((touchEndX > touchStartX) && (Math.abs(touchEndX - touchStartX) > Math.abs(touchEndY - touchStartY))) {
+        if (!canMoveRight()) {
+            setupInputOnce();
+            return;    
+        }
+        await moveRight();  
+    }
+    if ((touchEndY < touchStartY) && (Math.abs(touchEndX - touchStartX) < Math.abs(touchEndY - touchStartY))) {
+        if (!canMoveUp()) {
+            setupInputOnce();
+            return;    
+        }
+        await moveUp();  
+    }
+    if ((touchEndY > touchStartY) && (Math.abs(touchEndX - touchStartX) < Math.abs(touchEndY - touchStartY))) {
+        if (!canMoveDown()) {
+            setupInputOnce();
+            return;    
+        }
+        await moveDown();  
+    }
+
+    const newTile = new Tile(gameBoard);
+    grid.getRandomEmptyCell().linkTile(newTile);
+
+    if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+        await newTile.waitForAnimationEnd();
+        alert("Try again!");    
+    }
+
+    setupInputOnce();
 }
 
 // Tracking the pressed key   
