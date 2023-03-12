@@ -1,3 +1,5 @@
+let sum = 0;
+
 export class Cell {
     constructor (gridElement, x, y) {
         const cell = document.createElement("div");
@@ -45,6 +47,8 @@ export class Cell {
 
     mergeTiles() {
         this.linkedTile.setValue(this.linkedTile.value + this.linkedTileForMerge.value);
+        sum += this.linkedTile.value;
+        document.getElementById('score__counter').innerHTML = sum;
         this.linkedTileForMerge.removeFromDOM();  
         this.unlinkTileForMerge();  
     }

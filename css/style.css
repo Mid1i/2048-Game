@@ -11,20 +11,57 @@ body {
 
 .wrapper {
     display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
+}
+
+.header {
+    display: flex;
+    width: 86vmin;
+    padding: 2vmin;
+    color: rgb(224, 220, 220);
+    align-items: center;
+    font-family: "Arial";
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(224, 220, 220);
+    
+}
+
+.header__about {
+    width: 6vmin;
+    height: 6vmin;
+    color: #333;
+    cursor: pointer;
+    font-size: 4vmin;
+    text-align: center;
+    line-height: 6vmin;
+    background: white;
+    border-radius: 100%;
+}
+
+.header__title {
+    font-size: 6vmin;
+}
+
+.header__score {
+    display: flex;
+    font-size: 3vmin;
+    align-items: center;
+    flex-direction: column;
 }
 
 #game-board {
     --cell-size: 20vmin;
     --cell-gap: 2vmin;
-
-    position: relative;
+    
     display: grid;
-    margin-top: 10vmin;
-    grid-template-columns: repeat(4, var(--cell-size));
-    grid-template-rows: repeat(4, var(--cell-size));
+    margin-top: 2vmin;
+    position: relative;
     gap: var(--cell-gap);
     border-radius: 1vmin;
+    grid-template-rows: repeat(4, var(--cell-size));
+    grid-template-columns: repeat(4, var(--cell-size));
 }
 
 .cell {
@@ -36,22 +73,22 @@ body {
     --y: 0;
     --x: 0;
 
-    position: absolute;
-    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
-    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--cell-size);
-    height: var(--cell-size);
-    border-radius: 1vmin;
-    font-family: Arial;
-    font-size: 7.5vmin;
     font-weight: bold;
-    background: hsl(25, 60%, var(--bg-lightness));
-    color: hsl(25, 60%, var(--text-lightness));
+    position: absolute;
+    font-family: Arial;
+    font-size: 7.5vmin; 
+    align-items: center;
+    border-radius: 1vmin;
     transition: 100ms all;
     animation: show 200ms;
+    justify-content: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    color: hsl(25, 60%, var(--text-lightness));
+    background: hsl(25, 60%, var(--bg-lightness));
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
 }
 
 @keyframes show {

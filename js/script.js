@@ -17,15 +17,20 @@ function setupInputOnce() {
     let touchStartY = 0;
     let touchEndY = 0;  
 
-    window.addEventListener('touchstart', function(event) {
+    document.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
         touchStartY = event.changedTouches[0].screenY;
     }, {once: true});
 
-    window.addEventListener('touchend', function(event) {
+    document.addEventListener('touchend', function(event) {
         touchEndX = event.changedTouches[0].screenX;
         touchEndY = event.changedTouches[0].screenY;
-        checkDirection(touchStartX, touchEndX, touchStartY, touchEndY);
+
+        if ((touchEndX != touchStartX) || (touchEndY != touchStartY)) {
+            checkDirection(touchStartX, touchEndX, touchStartY, touchEndY);
+        } else {
+            setupInputOnce();
+        }
     }, {once: true});
 }
     
@@ -74,6 +79,7 @@ async function checkDirection(touchStartX, touchEndX, touchStartY, touchEndY) {
 async function handleInput(event) {
     switch (event.key) {
         case "ArrowUp":
+        case "w":
             if (!canMoveUp()) {
                 setupInputOnce();
                 return;    
@@ -82,6 +88,7 @@ async function handleInput(event) {
             break;
             
         case "ArrowDown":
+        case "s":
             if (!canMoveDown()) {
                 setupInputOnce();
                 return;    
@@ -90,6 +97,7 @@ async function handleInput(event) {
             break;
 
         case "ArrowLeft":
+        case "a":
             if (!canMoveLeft()) {
                 setupInputOnce();
                 return;    
@@ -98,6 +106,7 @@ async function handleInput(event) {
             break;
 
         case "ArrowRight":
+        case "d":
             if (!canMoveRight()) {
                 setupInputOnce();
                 return;    
