@@ -4,9 +4,10 @@
     padding: 0;
 }
 
-html, body {
+body {
     background: #333;
-    height: 100vh;
+    height: 100%;
+    scroll-behavior: unset;
 }
 
 .wrapper {
