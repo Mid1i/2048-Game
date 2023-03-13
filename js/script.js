@@ -8,12 +8,6 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 setupInputOnce();
 
-document.ready(function() {
-    document.addEventListener('touchmove', function (event) {
-        if (event.scale !== 1) { event.preventDefault(); }
-      }, false);    
-})
-
 // Tracking the pressed key
 function setupInputOnce() {
     window.addEventListener("keydown", handleInput, {once: true});  
