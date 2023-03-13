@@ -16,6 +16,10 @@ function setupInputOnce() {
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;  
+    
+    document.addEventListener('touchmove', function (event) {
+        if (event.scale !== 1) { event.preventDefault(); }
+    }, false);
 
     document.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
