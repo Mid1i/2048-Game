@@ -79,8 +79,9 @@ async function checkDirection(touchStartX, touchEndX, touchStartY, touchEndY) {
 async function handleInput(event) {
     console.log(event.key);
     switch (event.key) {
-        case "w":
         case "ArrowUp":
+        case "w":
+        case "ц":
             if (!canMoveUp()) {
                 setupInputOnce();
                 return;    
@@ -89,6 +90,7 @@ async function handleInput(event) {
             break;  
         case "ArrowDown":
         case "s":
+        case "ы":
             if (!canMoveDown()) {
                 setupInputOnce();
                 return;    
@@ -98,6 +100,7 @@ async function handleInput(event) {
 
         case "ArrowLeft":
         case "a":
+        case "ф":
             if (!canMoveLeft()) {
                 setupInputOnce();
                 return;    
@@ -107,6 +110,7 @@ async function handleInput(event) {
 
         case "ArrowRight":
         case "d":
+        case "в":
             if (!canMoveRight()) {
                 setupInputOnce();
                 return;    
