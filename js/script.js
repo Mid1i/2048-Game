@@ -8,6 +8,12 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 setupInputOnce();
 
+document.ready(function() {
+    document.addEventListener('touchmove', function (event) {
+        if (event.scale !== 1) { event.preventDefault(); }
+      }, false);    
+})
+
 // Tracking the pressed key
 function setupInputOnce() {
     window.addEventListener("keydown", handleInput, {once: true});  
@@ -16,10 +22,6 @@ function setupInputOnce() {
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;  
-    
-    document.addEventListener('touchmove', function (event) {
-        if (event.scale !== 1) { event.preventDefault(); }
-    }, false);
 
     document.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
@@ -81,16 +83,16 @@ async function checkDirection(touchStartX, touchEndX, touchStartY, touchEndY) {
 
 // Tracking the pressed key   
 async function handleInput(event) {
+    console.log(event.key);
     switch (event.key) {
-        case "ArrowUp":
         case "w":
+        case "ArrowUp":
             if (!canMoveUp()) {
                 setupInputOnce();
                 return;    
             }
             await moveUp();
-            break;
-            
+            break;  
         case "ArrowDown":
         case "s":
             if (!canMoveDown()) {
