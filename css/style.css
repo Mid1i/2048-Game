@@ -6,8 +6,7 @@
 
 body {
     background: #333;
-    height: 100%;
-    scroll-behavior: unset;
+    height: 100vh;
 }
 
 .wrapper {
