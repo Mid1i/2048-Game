@@ -5,11 +5,12 @@
 }
 
 body {
-    background: #333;
-    height: 100vh;
+    background: #333;   
 }
 
 .wrapper {
+    max-height: 100vh;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
