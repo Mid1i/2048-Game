@@ -1,19 +1,23 @@
-* {
+* {padding: 0; margin: 0; border: 0;}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-html, body {  
+html, body {
     width: 100vw;
     height: 100vh;
     position: fixed;
     overflow: hidden;
     background: #333;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 .wrapper {
-    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
