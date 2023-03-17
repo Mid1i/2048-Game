@@ -1,1 +1,1 @@
-https://mid1i.github.io/GameBot/game
+https://mid1i.github.io/2048_game/game
